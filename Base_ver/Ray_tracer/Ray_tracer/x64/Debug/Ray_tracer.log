@@ -1,2 +1,3 @@
 ﻿  Ray_tracer.cpp
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(17,21): warning C4305: 'initializing': truncation from 'double' to 'float'
   Ray_tracer.vcxproj -> C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\x64\Debug\Ray_tracer.exe
