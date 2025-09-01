@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\Ray_tracer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:Ray_tracer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\vector3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:vector3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "vector3.h",
+              "DocumentMoniker": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\vector3.h",
+              "RelativeDocumentMoniker": "vector3.h",
+              "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\vector3.h",
+              "RelativeToolTip": "vector3.h",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAAwKIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-09-01T23:18:49.138Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +41,7 @@
               "RelativeDocumentMoniker": "Ray_tracer.cpp",
               "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\Ray_tracer.cpp",
               "RelativeToolTip": "Ray_tracer.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-31T23:22:15.969Z",
               "EditorCaption": ""
