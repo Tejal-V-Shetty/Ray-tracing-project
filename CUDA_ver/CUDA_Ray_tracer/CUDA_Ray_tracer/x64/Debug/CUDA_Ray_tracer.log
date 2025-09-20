@@ -1,22 +1,20 @@
 ﻿  Compiling CUDA source file kernel.cu...
   
-  C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\bin\HostX64\x64" -x cu   -I"C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"  -G   --keep-dir CUDA_Ray_tracer\x64\Debug  -maxrregcount=0    --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/FdCUDA_Ray_tracer\x64\Debug\vc143.pdb" -o C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\CUDA_Ray_tracer\x64\Debug\kernel.cu.obj "C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\kernel.cu" 
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\vector3.h(24): warning #430-D: returning reference to local temporary
-        inline const vector3& operator-() const { return vector3(-v[0], -v[1], -v[2]); }
-                                                         ^
+  C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\bin\HostX64\x64" -x cu   -I"C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"  -G   --keep-dir CUDA_Ray_tracer\x64\Debug  -maxrregcount=0    --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/FdCUDA_Ray_tracer\x64\Debug\vc143.pdb" -o C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\CUDA_Ray_tracer\x64\Debug\kernel.cu.obj "C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\kernel.cu" 
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\vector3.h(25): warning #430-D: returning reference to local temporary
+        __declspec(__host__) __declspec(__device__) inline const vector3& operator-() const { return vector3(-v[0], -v[1], -v[2]); }
+                                                                                                     ^
   
   Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
   
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\vector3.h(24): warning #430-D: returning reference to local temporary
-        inline const vector3& operator-() const { return vector3(-v[0], -v[1], -v[2]); }
-                                                         ^
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\vector3.h(25): warning #430-D: returning reference to local temporary
+        __declspec(__host__) __declspec(__device__) inline const vector3& operator-() const { return vector3(-v[0], -v[1], -v[2]); }
+                                                                                                     ^
   
   Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
   
 CUDACOMPILE : nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
   kernel.cu
-  tmpxft_00005974_00000000-7_kernel.cudafe1.cpp
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\vector3.h(57): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-     Creating library C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\x64\Debug\CUDA_Ray_tracer.lib and object C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\x64\Debug\CUDA_Ray_tracer.exp
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  tmpxft_00003954_00000000-7_kernel.cudafe1.cpp
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\vector3.h(58): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   CUDA_Ray_tracer.vcxproj -> C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\x64\Debug\CUDA_Ray_tracer.exe

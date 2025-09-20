@@ -6,35 +6,36 @@ using namespace std;
 class vector3 
 {
 public:
-    vector3() {}
-    vector3(float v0, float v1, float v2) 
+    //The __host__ __device__ keywords allow the functions to be executed by both the CPU and GPU
+    __host__ __device__ vector3() {}
+    __host__ __device__ vector3(float v0, float v1, float v2)
     {
         v[0] = v0;
         v[1] = v1;
         v[2] = v2;
     }
-    inline float x() const { return v[0]; }
-    inline float y() const { return v[1]; }
-    inline float z() const { return v[2]; }
-    inline float r() const { return v[0]; }
-    inline float g() const { return v[1]; }
-    inline float b() const { return v[2]; }
+    __host__ __device__ inline float x() const { return v[0]; }
+    __host__ __device__ inline float y() const { return v[1]; }
+    __host__ __device__ inline float z() const { return v[2]; }
+    __host__ __device__ inline float r() const { return v[0]; }
+    __host__ __device__ inline float g() const { return v[1]; }
+    __host__ __device__ inline float b() const { return v[2]; }
 
-    inline const vector3& operator+() const { return *this; }
-    inline const vector3& operator-() const { return vector3(-v[0], -v[1], -v[2]); }
-    inline float operator[](int i) const { return v[i]; }
-    inline float& operator[](int i) { return v[i]; }
+    __host__ __device__ inline const vector3& operator+() const { return *this; }
+    __host__ __device__ inline const vector3& operator-() const { return vector3(-v[0], -v[1], -v[2]); }
+    __host__ __device__ inline float operator[](int i) const { return v[i]; }
+    __host__ __device__ inline float& operator[](int i) { return v[i]; }
 
-    inline vector3& operator+=(const vector3& v2);
-    inline vector3& operator-=(const vector3& v2);
-    inline vector3& operator*=(const vector3& v2);
-    inline vector3& operator/=(const vector3& v2);
-    inline vector3& operator*=(const float t);
-    inline vector3& operator/=(const float t);
+    __host__ __device__ inline vector3& operator+=(const vector3& v2);
+    __host__ __device__ inline vector3& operator-=(const vector3& v2);
+    __host__ __device__ inline vector3& operator*=(const vector3& v2);
+    __host__ __device__ inline vector3& operator/=(const vector3& v2);
+    __host__ __device__ inline vector3& operator*=(const float t);
+    __host__ __device__ inline vector3& operator/=(const float t);
 
-    inline float length() const { return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]); }
-    inline float squared_length() const { return v[0] * v[0] + v[1] * v[1] + v[2] * v[2]; }
-    inline void make_unit_vector();
+    __host__ __device__ inline float length() const { return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]); }
+    __host__ __device__ inline float squared_length() const { return v[0] * v[0] + v[1] * v[1] + v[2] * v[2]; }
+    __host__ __device__ inline void make_unit_vector();
 
 
     float v[3];

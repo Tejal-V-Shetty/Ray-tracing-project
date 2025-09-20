@@ -50,19 +50,17 @@ int main()
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch1.ppm", "w", stdout);
+    freopen("out_Ch2.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
     for (int j = ny - 1; j >= 0; j--)
     {
         for (int i = 0; i < nx; i++)
         {
             size_t pixel_index = j * 3 * nx + i * 3;
-            float r = fb[pixel_index + 0];
-            float g = fb[pixel_index + 1];
-            float b = fb[pixel_index + 2];
-            int ir = int(255.99 * r);
-            int ig = int(255.99 * g);
-            int ib = int(255.99 * b);
+            vector3 col(fb[pixel_index + 0], fb[pixel_index + 1], fb[pixel_index + 2]);
+            int ir = int(255.99 * col[0]);
+            int ig = int(255.99 * col[1]);
+            int ib = int(255.99 * col[2]);
             cout << ir << " " << ig << " " << ib << "\n";
         }
     }
