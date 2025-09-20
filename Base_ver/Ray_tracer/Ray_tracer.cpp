@@ -4,9 +4,22 @@
 
 using namespace std;
 
+//Calculates a sphere hit based on an expanded version of the formula for a sphere.
+//Formula: dot(p(t)-c, p(t)-c) = R*R [Derived from x*x + y*y + z*z = R*R]
+bool hit_sphere(const vector3& center, float radius, const ray& r)
+{
+    vector3 oc = r.origin() - center;
+    float a = dot(r.direction(), r.direction());
+    float b = 2.0 * dot(oc, r.direction());
+    float c = dot(oc, oc) - radius * radius;
+    float discriminant = b * b - 4 * a * c;
+    return discriminant > 0;
+}
 //Background color based on Y axis distance from bottom border of the screen
 vector3 color(const ray& r)
-{
+{   
+    if (hit_sphere(vector3(0, 0, -1), 0.5, r))  //Sphere at Z=-1 with radius =0.5
+        return vector3(1, 0, 0);
     vector3 unit_dir = unit_vector(r.direction());
     float t = 0.5 * (unit_dir.y() + 1.0);
     return (1.0 - t) * vector3(1.0, 1.0, 1.0) + t * vector3(0.5, 0.7, 1.0); //LERP between white and blue
@@ -16,7 +29,7 @@ int main()
 {
     int nx = 200;
     int ny = 100;
-    freopen("out_Ch3.ppm", "w", stdout);
+    freopen("out_Ch4.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
     vector3 lower_left_corner(-2.0, -1.0, - 1.0);
     vector3 horizontal(4.0, 0.0, 0.0);
