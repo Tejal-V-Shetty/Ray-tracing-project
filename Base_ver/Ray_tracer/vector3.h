@@ -1,3 +1,5 @@
+#ifndef vector3h
+#define vector3h
 #include<math.h>
 #include<stdlib.h>
 
@@ -160,3 +162,4 @@ inline vector3 unit_vector(vector3 i)
     return i / i.length();
 }
 
+#endif
