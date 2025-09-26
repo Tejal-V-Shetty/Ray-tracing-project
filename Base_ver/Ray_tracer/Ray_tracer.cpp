@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector3.h>
+#include <limits>
+#include <cstdlib>
 #include "ray.h"
 #include "hitablelist.h"
 #include "sphere.h"
-#include <limits>
+#include "camera.h"
 
 using namespace std;
 
@@ -26,26 +28,29 @@ int main()
 {
     int nx = 200;
     int ny = 100;
-    freopen("out_Ch5.ppm", "w", stdout);
+    int ns = 100;
+    freopen("out_Ch6.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
-    vector3 lower_left_corner(-2.0, -1.0, - 1.0);
-    vector3 horizontal(4.0, 0.0, 0.0);
-    vector3 vertical(0.0, 2.0, 0.0);
-    vector3 origin(0.0, 0.0, 0.0);
-
     hitable* list[2];
     list[0] = new sphere(vector3(0, 0, -1), 0.5);
     list[1] = new sphere(vector3(0, -100.5, -1), 100);
-
     hitable* world = new hitable_list(list, 2);
+    camera cam;
     for (int j = ny - 1; j >= 0; j--)
     {
         for (int i = 0; i < nx; i++)
         {
-            float u = float(i) / float(nx);
-            float v = float(j) / float(ny);
-            ray r(origin, lower_left_corner + u * horizontal + v * vertical);
-            vector3 col = color(r, world);
+            vector3 col(0, 0, 0);
+            for (int s = 0; s < ns; s++)
+            {
+
+                float u = float(i + ((double)rand() / RAND_MAX)) / float(nx);
+                float v = float(j + ((double)rand() / RAND_MAX)) / float(ny);
+                ray r = cam.get_ray(u, v);
+                col += color(r, world);
+            }
+            
+            col /= float(ns);
             int ir = int(255.99 * col[0]);
             int ig = int(255.99 * col[1]);
             int ib = int(255.99 * col[2]);

@@ -14,10 +14,10 @@ C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer
 C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\sphere.h(32,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Ray_tracer.cpp')
   
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(15,89): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(15,67): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(15,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(19,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(20,16): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(20,70): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(17,89): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(17,67): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(17,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(21,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(22,16): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\Ray_tracer.cpp(22,70): warning C4305: 'argument': truncation from 'double' to 'float'
   Ray_tracer.vcxproj -> C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\x64\Debug\Ray_tracer.exe
