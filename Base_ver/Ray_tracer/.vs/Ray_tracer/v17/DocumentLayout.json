@@ -7,12 +7,24 @@
       "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:Ray_tracer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\vector3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:vector3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\sphere.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:sphere.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\hitablelist.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:hitablelist.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\hitable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:hitable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\vector3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0ADF2FEB-D748-44C9-955C-BFF83472FBEC}|Ray_tracer.vcxproj|solutionrelative:vector3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,14 +44,53 @@
               "RelativeDocumentMoniker": "Ray_tracer.cpp",
               "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\Ray_tracer.cpp",
               "RelativeToolTip": "Ray_tracer.cpp",
-              "ViewState": "AgIAABsAAAAAAAAAAAAuwCwAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-31T23:22:15.969Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "sphere.h",
+              "DocumentMoniker": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\sphere.h",
+              "RelativeDocumentMoniker": "sphere.h",
+              "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\sphere.h",
+              "RelativeToolTip": "sphere.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-09-29T03:48:52.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "hitablelist.h",
+              "DocumentMoniker": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\hitablelist.h",
+              "RelativeDocumentMoniker": "hitablelist.h",
+              "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\hitablelist.h",
+              "RelativeToolTip": "hitablelist.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-09-29T03:48:52.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "camera.h",
+              "DocumentMoniker": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\camera.h",
+              "RelativeDocumentMoniker": "camera.h",
+              "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\camera.h",
+              "RelativeToolTip": "camera.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-09-29T03:48:52.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "hitable.h",
               "DocumentMoniker": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\hitable.h",
               "RelativeDocumentMoniker": "hitable.h",
@@ -47,11 +98,12 @@
               "RelativeToolTip": "hitable.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-25T22:46:37.19Z"
+              "WhenOpened": "2025-09-25T22:46:37.19Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "vector3.h",
               "DocumentMoniker": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\Base_ver\\Ray_tracer\\vector3.h",
               "RelativeDocumentMoniker": "vector3.h",

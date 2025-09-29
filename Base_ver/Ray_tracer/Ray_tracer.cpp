@@ -9,12 +9,22 @@
 
 using namespace std;
 
+//For diffuse surfaces, a random point in the unit sphere drawn at the tangent to the contact point is required
+vector3 random_in_unit_sphere() {
+    vector3 p;
+    do {
+        p = 2.0 * vector3((double)rand() / RAND_MAX, (double)rand() / RAND_MAX, (double)rand() / RAND_MAX) - vector3(1, 1, 1);
+    } while (p.squared_length() >= 1.0);
+    return p;
+}
+
 //Background color based on Y axis distance from bottom border of the screen
 vector3 color(const ray& r, hitable *world)
 {   
     hit_record rec;
-    if (world->hit(r, 0.0, numeric_limits<float>::max(), rec)) {
-        return 0.5 * vector3(rec.normal.x() + 1.0, rec.normal.y() + 1.0, rec.normal.z() + 1.0);
+    if (world->hit(r, 0.001, numeric_limits<float>::max(), rec)) {
+        vector3 target = rec.p + rec.normal + random_in_unit_sphere();
+        return 0.5 * color( ray(rec.p, target - rec.p), world);
     }
     else {
         vector3 unit_dir = unit_vector(r.direction());
@@ -29,7 +39,7 @@ int main()
     int nx = 200;
     int ny = 100;
     int ns = 100;
-    freopen("out_Ch6.ppm", "w", stdout);
+    freopen("out_Ch7.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
     hitable* list[2];
     list[0] = new sphere(vector3(0, 0, -1), 0.5);
@@ -51,6 +61,7 @@ int main()
             }
             
             col /= float(ns);
+            col = vector3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
             int ir = int(255.99 * col[0]);
             int ig = int(255.99 * col[1]);
             int ib = int(255.99 * col[2]);
