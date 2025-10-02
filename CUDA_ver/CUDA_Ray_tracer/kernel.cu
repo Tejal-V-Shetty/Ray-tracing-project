@@ -20,8 +20,22 @@ void check_cuda(cudaError_t result, char const* const func, const char* const fi
 	}
 }
 
+//Calculates a sphere hit based on an expanded version of the formula for a sphere.
+//Formula: dot(p(t)-c, p(t)-c) = R*R [Derived from x*x + y*y + z*z = R*R]
+__device__ bool hit_sphere(const vector3& center, float radius, const ray& r)
+{
+    vector3 oc = r.origin() - center;
+    float a = dot(r.direction(), r.direction());
+    float b = 2.0f * dot(oc, r.direction());
+    float c = dot(oc, oc) - radius * radius;
+    float discriminant = b * b - 4.0f * a * c;
+    return discriminant > 0;
+}
+
 __device__ vector3 color(const ray& r)
 {
+    if (hit_sphere(vector3(0, 0, -1), 0.5f, r))  //Sphere at Z=-1 with radius =0.5
+        return vector3(1, 0, 0);
     vector3 unit_dir = unit_vector(r.direction());
     float t = 0.5f * (unit_dir.y() + 1.0f);
     return (1.0f - t) * vector3(1.0, 1.0, 1.0) + t * vector3(0.5, 0.7, 1.0); //LERP between white and blue
@@ -64,7 +78,7 @@ int main()
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch3.ppm", "w", stdout);
+    freopen("out_Ch4.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     for (int j = ny - 1; j >= 0; j--)
