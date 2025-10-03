@@ -2,6 +2,7 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
+#include <curand_kernel.h>
 #include <stdio.h>
 #include <iostream>
 #include <limits>
@@ -9,6 +10,7 @@
 #include "ray.h"
 #include "hitablelist.h"
 #include "sphere.h"
+#include "camera.h"
 
 using namespace std;
 
@@ -23,21 +25,33 @@ void check_cuda(cudaError_t result, char const* const func, const char* const fi
 	}
 }
 
-__global__ void create_world(hitable **d_list, hitable **d_world)
+__global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_cam)
 {
     if (threadIdx.x == 0 && blockIdx.x == 0)    //Only initialize them once
     {
         *(d_list) = new sphere(vector3(0, 0, -1), 0.5);
         *(d_list + 1) = new sphere(vector3(0, -100.5, -1), 100);
         *d_world = new hitable_list(d_list, 2);
+        *d_cam = new camera();
     }
 }
 
-__global__ void free_world(hitable** d_list, hitable** d_world)
+__global__ void free_world(hitable** d_list, hitable** d_world, camera **d_cam)
 {
     delete* (d_list);
     delete* (d_list + 1);
     delete* d_world;
+    delete* d_cam;
+}
+
+__global__ void render_init(int max_x, int max_y, curandState* rand_state)
+{
+    int i = threadIdx.x + blockIdx.x * blockDim.x;
+    int j = threadIdx.y + blockIdx.y * blockDim.y;
+    if ((i >= max_x) || (j >= max_y))
+        return;
+    int pixel_index = j * max_x + i;
+    curand_init(2001, pixel_index, 0, &rand_state[pixel_index]);//Same seed for all threads
 }
 
 //Calculates a sphere hit based on an expanded version of the formula for a sphere.
@@ -65,25 +79,35 @@ __device__ vector3 color(const ray& r, hitable **world)
     }
 }
 
-__global__ void render(vector3* fb, int max_x, int max_y, vector3 lower_left_corner, vector3 horizontal, vector3 vertical, vector3 origin, hitable **world)
+__global__ void render(vector3* fb, int max_x, int max_y, int ns, camera **cam, hitable **world, curandState *rand_state)
 {
     int i = threadIdx.x + blockIdx.x * blockDim.x;
     int j = threadIdx.y + blockIdx.y * blockDim.y;
     if ((i >= max_x) || (j >= max_y))
         return;
     int pixel_index = j * max_x + i;
-    float u = float(i) / float(max_x);
-    float v = float(j) / float(max_y);
-    ray r(origin, lower_left_corner + u * horizontal + v * vertical);
-    fb[pixel_index] = color(r, world);
+    curandState local_rand_state = rand_state[pixel_index];
+    vector3 col(0, 0, 0);
+    for (int s = 0; s < ns; s++)
+    {
+        float u = float(i + curand_uniform(&local_rand_state)) / float(max_x);
+        float v = float(j + curand_uniform(&local_rand_state)) / float(max_y);
+        ray r = (*cam)->get_ray(u, v);
+        col += color(r, world);
+    }
+    fb[pixel_index] = col/float(ns);
 }
 
 int main()
 {
     int nx = 200;
     int ny = 100;
+    int ns = 100;
     int num_pixels = nx * ny;
     size_t fb_size = 3 * num_pixels * sizeof(float);
+
+    curandState* d_rand_state;
+    checkCudaErrors(cudaMalloc((void **)&d_rand_state, num_pixels*sizeof(curandState)));
 
     //Frame buffer allocation
     vector3* fb;
@@ -98,17 +122,24 @@ int main()
     checkCudaErrors(cudaMalloc((void**)&d_list, 2 * sizeof(hitable*)));
     hitable** d_world;
     checkCudaErrors(cudaMalloc((void**)&d_world, sizeof(hitable *)));
-    create_world<<<1,1>>>(d_list, d_world);
+    camera** d_cam;
+    checkCudaErrors(cudaMalloc((void**)&d_cam, 2 * sizeof(camera*)));
+    create_world << <1, 1 >> > (d_list, d_world, d_cam);
+    checkCudaErrors(cudaGetLastError());
+    checkCudaErrors(cudaDeviceSynchronize());
 
     int tx = 8, ty = 8; //Threads
     dim3 blocks(nx / tx + 1, ny / ty + 1);
     dim3 threads(tx, ty);
-    render<<<blocks, threads >>> (fb, nx, ny, lower_left_corner, horizontal, vertical, origin, d_world);
+    render_init << <blocks, threads >> > (nx, ny, d_rand_state);
+    checkCudaErrors(cudaGetLastError());
+    checkCudaErrors(cudaDeviceSynchronize());
+    render<<<blocks, threads >>> (fb, nx, ny, ns, d_cam, d_world, d_rand_state);
     checkCudaErrors(cudaGetLastError());
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch5.ppm", "w", stdout);
+    freopen("out_Ch6.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     for (int j = ny - 1; j >= 0; j--)
@@ -123,8 +154,14 @@ int main()
             cout << ir << " " << ig << " " << ib << "\n";
         }
     }
-    free_world << <1, 1 >> > (d_list, d_world);
+
+    checkCudaErrors(cudaDeviceSynchronize());
+    free_world << <1, 1 >> > (d_list, d_world, d_cam);
+
+    checkCudaErrors(cudaGetLastError());
     checkCudaErrors(cudaFree(d_list));
     checkCudaErrors(cudaFree(d_world));
+    checkCudaErrors(cudaFree(d_rand_state));
+    checkCudaErrors(cudaFree(d_cam));
     checkCudaErrors(cudaFree(fb));
 }
