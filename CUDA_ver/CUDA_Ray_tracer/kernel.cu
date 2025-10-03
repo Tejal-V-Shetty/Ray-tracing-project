@@ -54,6 +54,15 @@ __global__ void render_init(int max_x, int max_y, curandState* rand_state)
     curand_init(2001, pixel_index, 0, &rand_state[pixel_index]);//Same seed for all threads
 }
 
+//For diffuse surfaces, a random point in the unit sphere drawn at the tangent to the contact point is required
+__device__ vector3 random_in_unit_sphere(curandState* rand_state) {
+    vector3 p;
+    do {
+        p = 2.0f * vector3(curand_uniform(rand_state), curand_uniform(rand_state), curand_uniform(rand_state)) - vector3(1, 1, 1);
+    } while (p.squared_length() >= 1.0f);
+    return p;
+}
+
 //Calculates a sphere hit based on an expanded version of the formula for a sphere.
 //Formula: dot(p(t)-c, p(t)-c) = R*R [Derived from x*x + y*y + z*z = R*R]
 __device__ bool hit_sphere(const vector3& center, float radius, const ray& r)
@@ -66,17 +75,24 @@ __device__ bool hit_sphere(const vector3& center, float radius, const ray& r)
     return discriminant > 0;
 }
 
-__device__ vector3 color(const ray& r, hitable **world)
+__device__ vector3 color(const ray& r, hitable **world, curandState *rand_state)
 {
-    hit_record rec;
-    if ((*world)->hit(r, 0.0f, FLT_MAX, rec)) {
-        return 0.5f * vector3(rec.normal.x() + 1.0f, rec.normal.y() + 1.0f, rec.normal.z() + 1.0f);
+    ray cur_ray = r;
+    float cur_attenuation = 1.0f;
+    for (int i = 0; i < 50; i++) {
+        hit_record rec;
+        if ((*world)->hit(cur_ray, 0.001f, FLT_MAX, rec)) {
+            vector3 target = rec.p + rec.normal + random_in_unit_sphere(rand_state);
+            cur_attenuation *= 0.5f;
+            cur_ray = ray(rec.p, target - rec.p);
+        }
+        else {
+            vector3 unit_dir = unit_vector(r.direction());
+            float t = 0.5f * (unit_dir.y() + 1.0f);
+            return cur_attenuation*((1.0f - t) * vector3(1.0, 1.0, 1.0) + t * vector3(0.5, 0.7, 1.0)); //LERP between white and blue
+        }
     }
-    else {
-        vector3 unit_dir = unit_vector(r.direction());
-        float t = 0.5f * (unit_dir.y() + 1.0f);
-        return (1.0f - t) * vector3(1.0, 1.0, 1.0) + t * vector3(0.5, 0.7, 1.0); //LERP between white and blue
-    }
+    return vector3(0.0, 0.0, 0.0);
 }
 
 __global__ void render(vector3* fb, int max_x, int max_y, int ns, camera **cam, hitable **world, curandState *rand_state)
@@ -93,9 +109,14 @@ __global__ void render(vector3* fb, int max_x, int max_y, int ns, camera **cam, 
         float u = float(i + curand_uniform(&local_rand_state)) / float(max_x);
         float v = float(j + curand_uniform(&local_rand_state)) / float(max_y);
         ray r = (*cam)->get_ray(u, v);
-        col += color(r, world);
+        col += color(r, world, &local_rand_state);
     }
-    fb[pixel_index] = col/float(ns);
+    rand_state[pixel_index] = local_rand_state;
+    col /= float(ns);
+    col[0] = sqrt(col[0]);
+    col[1] = sqrt(col[1]);
+    col[2] = sqrt(col[2]);
+    fb[pixel_index] = col;
 }
 
 int main()
@@ -139,7 +160,7 @@ int main()
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch6.ppm", "w", stdout);
+    freopen("out_Ch7.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     for (int j = ny - 1; j >= 0; j--)

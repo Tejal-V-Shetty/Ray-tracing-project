@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "kernel.cu",
               "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\CUDA_ver\\CUDA_Ray_tracer\\kernel.cu",
               "RelativeToolTip": "kernel.cu",
-              "ViewState": "AgIAAHEAAAAAAAAAAIAwwIgAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAuwFQAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-09-18T23:43:56.195Z",
               "EditorCaption": ""
@@ -63,8 +63,7 @@
               "RelativeToolTip": "camera.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-03T05:01:48.824Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-03T05:01:48.824Z"
             },
             {
               "$type": "Document",
@@ -76,8 +75,7 @@
               "RelativeToolTip": "sphere.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-02T20:43:16.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T20:43:16.386Z"
             },
             {
               "$type": "Document",
@@ -101,8 +99,7 @@
               "RelativeToolTip": "hitable.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-02T20:42:27.545Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T20:42:27.545Z"
             },
             {
               "$type": "Document",
