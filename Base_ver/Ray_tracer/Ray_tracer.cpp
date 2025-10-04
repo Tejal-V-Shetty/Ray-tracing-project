@@ -36,13 +36,14 @@ int main()
     int nx = 200;
     int ny = 100;
     int ns = 100;
-    freopen("out_Ch8.ppm", "w", stdout);
+    freopen("out_Ch9.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
-    hitable* list[4];
-    list[0] = new sphere(vector3(0, 0, -1), 0.5, new lambertian(vector3(0.8, 0.3, 0.3)));
+    hitable* list[5];
+    list[0] = new sphere(vector3(0, 0, -1), 0.5, new lambertian(vector3(0.1, 0.2, 0.5)));
     list[1] = new sphere(vector3(0, -100.5, -1), 100, new lambertian(vector3(0.8, 0.8, 0.0)));
-    list[2] = new sphere(vector3(1, 0, -1), 0.5, new metal(vector3(0.8, 0.6, 0.2), 1.0));
-    list[3] = new sphere(vector3(-1, 0, -1), 0.5, new metal(vector3(0.8, 0.8, 0.8), 0.3));
+    list[2] = new sphere(vector3(1, 0, -1), 0.5, new metal(vector3(0.8, 0.6, 0.2), 0.25));
+    list[3] = new sphere(vector3(-1, 0, -1), 0.5, new dielectric(1.5));
+    list[4] = new sphere(vector3(-1, 0, -1), -0.45, new dielectric(1.5));
     hitable* world = new hitable_list(list, 4);
     camera cam;
     for (int j = ny - 1; j >= 0; j--)
@@ -52,7 +53,6 @@ int main()
             vector3 col(0, 0, 0);
             for (int s = 0; s < ns; s++)
             {
-
                 float u = float(i + ((double)rand() / RAND_MAX)) / float(nx);
                 float v = float(j + ((double)rand() / RAND_MAX)) / float(ny);
                 ray r = cam.get_ray(u, v);
