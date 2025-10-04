@@ -6,38 +6,43 @@
 class sphere : public hitable {
 public:
 	sphere() {}
-	sphere(vector3 cen, float r) : center(cen), radius(r) {};
-	virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
+	sphere(vector3 cen, float r, material* mat) : center(cen), radius(r), mat(mat) {}
+
+    //Calculates a sphere hit based on an expanded version of the formula for a sphere.
+    //Formula: dot(p(t)-c, p(t)-c) = R*R [Derived from x*x + y*y + z*z = R*R]
+    bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const {
+        vector3 oc = r.origin() - center;
+        float a = dot(r.direction(), r.direction());
+        float b = 2.0 * dot(oc, r.direction());
+        float c = dot(oc, oc) - radius * radius;
+        float discriminant = b * b - 4 * a * c;
+
+        if (discriminant > 0) {
+            float temp = (-b - sqrt(discriminant)) / (2.0 * a);
+            if (temp<tmax && temp>tmin) {
+                rec.t = temp;
+                rec.p = r.point_at_parameter(rec.t);
+                rec.normal = (rec.p - center) / radius;
+                rec.mat = mat;
+                return true;
+            }
+            temp = (-b + sqrt(discriminant)) / (2.0 * a);
+            if (temp<tmax && temp>tmin) {
+                rec.t = temp;
+                rec.p = r.point_at_parameter(rec.t);
+                rec.normal = (rec.p - center) / radius;
+                rec.mat = mat;
+                return true;
+            }
+        }
+        return false;
+    }
+private:
 	vector3 center;
 	float radius;
+    material* mat;
 };
 
-//Calculates a sphere hit based on an expanded version of the formula for a sphere.
-//Formula: dot(p(t)-c, p(t)-c) = R*R [Derived from x*x + y*y + z*z = R*R]
-bool sphere::hit(const ray& r, float tmin, float tmax, hit_record& rec) const {
-    vector3 oc = r.origin() - center;
-    float a = dot(r.direction(), r.direction());
-    float b = 2.0 * dot(oc, r.direction());
-    float c = dot(oc, oc) - radius * radius;
-    float discriminant = b * b - 4 * a * c;
 
-    if (discriminant > 0) {
-        float temp = (-b - sqrt(discriminant)) / (2.0 * a);
-        if (temp<tmax && temp>tmin){
-            rec.t = temp;
-            rec.p = r.point_at_parameter(rec.t);
-            rec.normal = (rec.p - center) / radius;
-            return true;
-        }
-        temp = (-b + sqrt(discriminant)) / (2.0 * a);
-        if (temp<tmax && temp>tmin) {
-            rec.t = temp;
-            rec.p = r.point_at_parameter(rec.t);
-            rec.normal = (rec.p - center) / radius;
-            return true;
-        }
-    }
-    return false;
-}
 
 #endif
