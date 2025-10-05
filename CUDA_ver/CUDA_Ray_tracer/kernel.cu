@@ -11,6 +11,7 @@
 #include "hitablelist.h"
 #include "sphere.h"
 #include "camera.h"
+#include "material.h"
 
 using namespace std;
 
@@ -29,17 +30,21 @@ __global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_ca
 {
     if (threadIdx.x == 0 && blockIdx.x == 0)    //Only initialize them once
     {
-        *(d_list) = new sphere(vector3(0, 0, -1), 0.5);
-        *(d_list + 1) = new sphere(vector3(0, -100.5, -1), 100);
-        *d_world = new hitable_list(d_list, 2);
+        d_list[0] = new sphere(vector3(0, 0, -1), 0.5, new lambertian(vector3(0.8, 0.3, 0.3)));
+        d_list[1] = new sphere(vector3(0, -100.5, -1), 100, new lambertian(vector3(0.8, 0.8, 0.0)));
+        d_list[2] = new sphere(vector3(1, 0, -1), 0.5, new metal(vector3(0.8, 0.6, 0.2), 1.0));
+        d_list[3] = new sphere(vector3(-1, 0, -1), 0.5, new metal(vector3(0.8, 0.8, 0.8), 0.3));
+        *d_world = new hitable_list(d_list, 4);
         *d_cam = new camera();
     }
 }
 
 __global__ void free_world(hitable** d_list, hitable** d_world, camera **d_cam)
 {
-    delete* (d_list);
-    delete* (d_list + 1);
+    for (int i = 0; i < 4; i++){
+        delete((sphere*)d_list[i])->mat_ptr;
+        delete d_list[i];
+    }
     delete* d_world;
     delete* d_cam;
 }
@@ -52,15 +57,6 @@ __global__ void render_init(int max_x, int max_y, curandState* rand_state)
         return;
     int pixel_index = j * max_x + i;
     curand_init(2001, pixel_index, 0, &rand_state[pixel_index]);//Same seed for all threads
-}
-
-//For diffuse surfaces, a random point in the unit sphere drawn at the tangent to the contact point is required
-__device__ vector3 random_in_unit_sphere(curandState* rand_state) {
-    vector3 p;
-    do {
-        p = 2.0f * vector3(curand_uniform(rand_state), curand_uniform(rand_state), curand_uniform(rand_state)) - vector3(1, 1, 1);
-    } while (p.squared_length() >= 1.0f);
-    return p;
 }
 
 //Calculates a sphere hit based on an expanded version of the formula for a sphere.
@@ -78,16 +74,23 @@ __device__ bool hit_sphere(const vector3& center, float radius, const ray& r)
 __device__ vector3 color(const ray& r, hitable **world, curandState *rand_state)
 {
     ray cur_ray = r;
-    float cur_attenuation = 1.0f;
+    vector3 cur_attenuation = vector3(1.0, 1.0, 1.0);
     for (int i = 0; i < 50; i++) {
         hit_record rec;
         if ((*world)->hit(cur_ray, 0.001f, FLT_MAX, rec)) {
-            vector3 target = rec.p + rec.normal + random_in_unit_sphere(rand_state);
-            cur_attenuation *= 0.5f;
-            cur_ray = ray(rec.p, target - rec.p);
+            ray scattered;
+            vector3 attenuation;
+            if (rec.mat_ptr->scatter(cur_ray, rec, attenuation, scattered, rand_state))
+            {
+                cur_attenuation *= attenuation;
+                cur_ray = scattered;
+            }
+            else {
+                return vector3(0.0, 0.0, 0.0);
+            }
         }
         else {
-            vector3 unit_dir = unit_vector(r.direction());
+            vector3 unit_dir = unit_vector(cur_ray.direction());
             float t = 0.5f * (unit_dir.y() + 1.0f);
             return cur_attenuation*((1.0f - t) * vector3(1.0, 1.0, 1.0) + t * vector3(0.5, 0.7, 1.0)); //LERP between white and blue
         }
@@ -139,8 +142,8 @@ int main()
     vector3 vertical(0.0, 2.0, 0.0);
     vector3 origin(0.0, 0.0, 0.0);
 
-    hitable** d_list;
-    checkCudaErrors(cudaMalloc((void**)&d_list, 2 * sizeof(hitable*)));
+    hitable** d_list;   //The objects in the world
+    checkCudaErrors(cudaMalloc((void**)&d_list, 4 * sizeof(hitable*)));
     hitable** d_world;
     checkCudaErrors(cudaMalloc((void**)&d_world, sizeof(hitable *)));
     camera** d_cam;
@@ -160,7 +163,7 @@ int main()
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch7.ppm", "w", stdout);
+    freopen("out_Ch8.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     for (int j = ny - 1; j >= 0; j--)
