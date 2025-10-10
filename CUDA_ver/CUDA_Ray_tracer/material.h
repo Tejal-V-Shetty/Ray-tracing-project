@@ -101,7 +101,7 @@ public:
 		else {
 			reflect_prob = 1.0;
 		}
-		if ((double)rand() / RAND_MAX < reflect_prob) {
+		if (curand_uniform(rand_state) < reflect_prob) {
 			scattered = ray(rec.p, reflected);
 		}
 		else {

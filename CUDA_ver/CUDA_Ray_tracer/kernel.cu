@@ -30,11 +30,12 @@ __global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_ca
 {
     if (threadIdx.x == 0 && blockIdx.x == 0)    //Only initialize them once
     {
-        d_list[0] = new sphere(vector3(0, 0, -1), 0.5, new lambertian(vector3(0.8, 0.3, 0.3)));
+        d_list[0] = new sphere(vector3(0, 0, -1), 0.5, new lambertian(vector3(0.1, 0.2, 0.5)));
         d_list[1] = new sphere(vector3(0, -100.5, -1), 100, new lambertian(vector3(0.8, 0.8, 0.0)));
         d_list[2] = new sphere(vector3(1, 0, -1), 0.5, new metal(vector3(0.8, 0.6, 0.2), 1.0));
-        d_list[3] = new sphere(vector3(-1, 0, -1), 0.5, new metal(vector3(0.8, 0.8, 0.8), 0.3));
-        *d_world = new hitable_list(d_list, 4);
+        d_list[3] = new sphere(vector3(-1, 0, -1), 0.5, new dielectric(1.5));
+        d_list[4] = new sphere(vector3(-1, 0, -1), 0.45, new dielectric(1.5));
+        *d_world = new hitable_list(d_list, 5);
         *d_cam = new camera();
     }
 }
@@ -143,7 +144,7 @@ int main()
     vector3 origin(0.0, 0.0, 0.0);
 
     hitable** d_list;   //The objects in the world
-    checkCudaErrors(cudaMalloc((void**)&d_list, 4 * sizeof(hitable*)));
+    checkCudaErrors(cudaMalloc((void**)&d_list, 5 * sizeof(hitable*)));
     hitable** d_world;
     checkCudaErrors(cudaMalloc((void**)&d_world, sizeof(hitable *)));
     camera** d_cam;
@@ -163,7 +164,7 @@ int main()
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch8.ppm", "w", stdout);
+    freopen("out_Ch9.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     for (int j = ny - 1; j >= 0; j--)

@@ -44,7 +44,7 @@ int main()
     list[2] = new sphere(vector3(1, 0, -1), 0.5, new metal(vector3(0.8, 0.6, 0.2), 0.25));
     list[3] = new sphere(vector3(-1, 0, -1), 0.5, new dielectric(1.5));
     list[4] = new sphere(vector3(-1, 0, -1), -0.45, new dielectric(1.5));
-    hitable* world = new hitable_list(list, 4);
+    hitable* world = new hitable_list(list, 5);
     camera cam;
     for (int j = ny - 1; j >= 0; j--)
     {

@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "kernel.cu",
               "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\CUDA_ver\\CUDA_Ray_tracer\\kernel.cu",
               "RelativeToolTip": "kernel.cu",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAuwKIAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-09-18T23:43:56.195Z",
               "EditorCaption": ""
@@ -65,7 +65,7 @@
               "RelativeDocumentMoniker": "material.h",
               "ToolTip": "C:\\Users\\tej36\\OneDrive\\Documents\\GitHub\\Ray-tracing-project\\CUDA_ver\\CUDA_Ray_tracer\\material.h",
               "RelativeToolTip": "material.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGcAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-10-05T19:44:31.998Z",
               "EditorCaption": ""
@@ -80,8 +80,7 @@
               "RelativeToolTip": "camera.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-03T05:01:48.824Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-03T05:01:48.824Z"
             },
             {
               "$type": "Document",
@@ -93,8 +92,7 @@
               "RelativeToolTip": "sphere.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-02T20:43:16.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T20:43:16.386Z"
             },
             {
               "$type": "Document",
@@ -106,8 +104,7 @@
               "RelativeToolTip": "hitablelist.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-02T20:42:45.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T20:42:45.25Z"
             },
             {
               "$type": "Document",
@@ -119,8 +116,7 @@
               "RelativeToolTip": "hitable.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-02T20:42:27.545Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T20:42:27.545Z"
             },
             {
               "$type": "Document",
@@ -132,8 +128,7 @@
               "RelativeToolTip": "ray.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-30T23:17:16.649Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-30T23:17:16.649Z"
             },
             {
               "$type": "Document",
@@ -145,8 +140,7 @@
               "RelativeToolTip": "vector3.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAKAAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-19T04:39:15.906Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-19T04:39:15.906Z"
             }
           ]
         }
