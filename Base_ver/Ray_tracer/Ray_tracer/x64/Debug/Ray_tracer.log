@@ -14,7 +14,13 @@ C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer
 C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\sphere.h(29,46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Ray_tracer.cpp')
   
-C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\camera.h(16,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\camera.h(14,63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Ray_tracer.cpp')
+  
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\camera.h(14,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Ray_tracer.cpp')
+  
+C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\camera.h(23,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Ray_tracer.cpp')
   
 C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\Base_ver\Ray_tracer\material.h(17,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
