@@ -34,7 +34,7 @@ __global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_ca
         d_list[1] = new sphere(vector3(0, -100.5, -1), 100, new lambertian(vector3(0.8, 0.8, 0.0)));
         d_list[2] = new sphere(vector3(1, 0, -1), 0.5, new metal(vector3(0.8, 0.6, 0.2), 1.0));
         d_list[3] = new sphere(vector3(-1, 0, -1), 0.5, new dielectric(1.5));
-        d_list[4] = new sphere(vector3(-1, 0, -1), 0.45, new dielectric(1.5));
+        d_list[4] = new sphere(vector3(-1, 0, -1), -0.45, new dielectric(1.5));
         *d_world = new hitable_list(d_list, 5);
         *d_cam = new camera();
     }

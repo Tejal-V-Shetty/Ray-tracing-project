@@ -36,7 +36,7 @@ int main()
     int nx = 200;
     int ny = 100;
     int ns = 100;
-    freopen("out_Ch9.ppm", "w", stdout);
+    freopen("out_Ch10.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
     hitable* list[5];
     list[0] = new sphere(vector3(0, 0, -1), 0.5, new lambertian(vector3(0.1, 0.2, 0.5)));
@@ -45,7 +45,7 @@ int main()
     list[3] = new sphere(vector3(-1, 0, -1), 0.5, new dielectric(1.5));
     list[4] = new sphere(vector3(-1, 0, -1), -0.45, new dielectric(1.5));
     hitable* world = new hitable_list(list, 5);
-    camera cam;
+    camera cam(vector3(-2, 2, 1), vector3(0, 0, -1), vector3(0, 1, 0), 90, float(nx) / float(ny));
     for (int j = ny - 1; j >= 0; j--)
     {
         for (int i = 0; i < nx; i++)
