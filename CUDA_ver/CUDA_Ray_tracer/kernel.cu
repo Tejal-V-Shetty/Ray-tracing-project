@@ -26,7 +26,7 @@ void check_cuda(cudaError_t result, char const* const func, const char* const fi
 	}
 }
 
-__global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_cam)
+__global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_cam, int nx, int ny)
 {
     if (threadIdx.x == 0 && blockIdx.x == 0)    //Only initialize them once
     {
@@ -36,7 +36,7 @@ __global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_ca
         d_list[3] = new sphere(vector3(-1, 0, -1), 0.5, new dielectric(1.5));
         d_list[4] = new sphere(vector3(-1, 0, -1), -0.45, new dielectric(1.5));
         *d_world = new hitable_list(d_list, 5);
-        *d_cam = new camera();
+        *d_cam = new camera(vector3(-2, 2, 1), vector3(0, 0, -1), vector3(0, 1, 0), 90, float(nx) / float(ny));
     }
 }
 
@@ -149,7 +149,7 @@ int main()
     checkCudaErrors(cudaMalloc((void**)&d_world, sizeof(hitable *)));
     camera** d_cam;
     checkCudaErrors(cudaMalloc((void**)&d_cam, 2 * sizeof(camera*)));
-    create_world << <1, 1 >> > (d_list, d_world, d_cam);
+    create_world << <1, 1 >> > (d_list, d_world, d_cam, nx, ny);
     checkCudaErrors(cudaGetLastError());
     checkCudaErrors(cudaDeviceSynchronize());
 
@@ -164,7 +164,7 @@ int main()
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch9.ppm", "w", stdout);
+    freopen("out_Ch10.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     for (int j = ny - 1; j >= 0; j--)
