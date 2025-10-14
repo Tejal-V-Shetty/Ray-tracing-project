@@ -16,7 +16,7 @@ C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_t
 CUDACOMPILE : ptxas warning : Stack size for entry function '_Z6renderP7vector3iiiPP6cameraPP7hitableP17curandStateXORWOW' cannot be statically determined
 CUDACOMPILE : nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
   kernel.cu
-  tmpxft_00000a98_00000000-7_kernel.cudafe1.cpp
+  tmpxft_000044ec_00000000-7_kernel.cudafe1.cpp
 C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\vector3.h(60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\camera.h(24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
      Creating library C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\x64\Debug\CUDA_Ray_tracer.lib and object C:\Users\tej36\OneDrive\Documents\GitHub\Ray-tracing-project\CUDA_ver\CUDA_Ray_tracer\x64\Debug\CUDA_Ray_tracer.exp
