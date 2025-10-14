@@ -36,7 +36,11 @@ __global__ void create_world(hitable **d_list, hitable **d_world, camera ** d_ca
         d_list[3] = new sphere(vector3(-1, 0, -1), 0.5, new dielectric(1.5));
         d_list[4] = new sphere(vector3(-1, 0, -1), -0.45, new dielectric(1.5));
         *d_world = new hitable_list(d_list, 5);
-        *d_cam = new camera(vector3(-2, 2, 1), vector3(0, 0, -1), vector3(0, 1, 0), 90, float(nx) / float(ny));
+        vector3 lookfrom(3, 3, 2);
+        vector3 lookat(0, 0, -1);
+        float dist_to_focus = (lookfrom - lookat).length();
+        float aperture = 2.0;
+        *d_cam = new camera(lookfrom, lookat, vector3(0, 1, 0), 20, float(nx) / float(ny), aperture, dist_to_focus);
     }
 }
 
@@ -112,7 +116,7 @@ __global__ void render(vector3* fb, int max_x, int max_y, int ns, camera **cam, 
     {
         float u = float(i + curand_uniform(&local_rand_state)) / float(max_x);
         float v = float(j + curand_uniform(&local_rand_state)) / float(max_y);
-        ray r = (*cam)->get_ray(u, v);
+        ray r = (*cam)->get_ray(u, v, &local_rand_state);
         col += color(r, world, &local_rand_state);
     }
     rand_state[pixel_index] = local_rand_state;
@@ -164,7 +168,7 @@ int main()
     checkCudaErrors(cudaDeviceSynchronize());
 
     //Output the image
-    freopen("out_Ch10.ppm", "w", stdout);
+    freopen("out_Ch11.ppm", "w", stdout);
     cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     for (int j = ny - 1; j >= 0; j--)
